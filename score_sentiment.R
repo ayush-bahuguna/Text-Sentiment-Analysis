@@ -1,8 +1,7 @@
-require(plyr)
-require(stringr)
-
 score.sentiment = function(sentences, pos.words, neg.words, .progress='none')
 {
+	require(plyr)
+	require(stringr)
 	list=lapply(sentences, function(sentence, pos.words, neg.words)
 	{
 		sentence = gsub('[[:punct:]]',' ',sentence)
@@ -11,7 +10,7 @@ score.sentiment = function(sentences, pos.words, neg.words, .progress='none')
 		sentence = gsub('\n','',sentence)    #removes new lines
 		sentence = tolower(sentence)
 		word.list = str_split(sentence, '\\s+')
-		words = unlist(word.list)            #changes a list to character vector
+		words = unlist(word.list)  #changes a list to character vector
 		pos.matches = match(words, pos.words)
 		neg.matches = match(words, neg.words)
 		pos.matches = !is.na(pos.matches)
